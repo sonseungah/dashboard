@@ -1,0 +1,19 @@
+# 빌드 산출물
+dist/
+build/
+obfuscated/
+build.py
+build.bat
+*.spec
+
+# 데이터 파일
+history.db
+history_export.csv
+
+# Python 캐시
+__pycache__/
+*.pyc
+*.pyo
+
+# 오프라인 pip 패키지
+wheels/
