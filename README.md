@@ -25,7 +25,7 @@ Flask 백엔드와 순수 HTML/CSS/JS 프론트엔드로 구성되어 있으며,
 
 > 실행 후 `http://localhost:5000` 접속
 
-![대시보드 메인](https://via.placeholder.com/900x500?text=Dashboard+Screenshot)
+![대시보드 메인](screenshots/dashboard.png)
 
 ---
 
