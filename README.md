@@ -76,49 +76,10 @@ http://localhost:5000
 
 ## 배포용 exe 빌드
 
-CMD 창 없이 시스템 트레이로 실행되는 exe를 만들려면 아래 순서를 따릅니다.
+PyArmor로 소스코드를 난독화한 뒤 PyInstaller로 패키징합니다.  
+빌드 결과물인 `dist/PC_Dashboard/` 폴더 전체를 zip으로 압축해서 배포하세요.
 
-### 1. 추가 패키지 설치
-
-```bash
-pip install pyarmor pyinstaller pystray pillow
-```
-
-### 2. 소스코드 난독화
-
-```bash
-pyarmor gen -O obfuscated app.py launcher.py
-```
-
-`obfuscated/` 폴더에 암호화된 파일과 `pyarmor_runtime_*` 런타임 폴더가 생성됩니다.
-
-### 3. PyInstaller 빌드
-
-`RUNTIME_NAME` 부분을 실제 생성된 런타임 폴더 이름으로 교체하세요.
-
-```bash
-pyinstaller --noconsole --onedir --name "PC_Dashboard" ^
-  --paths "obfuscated" ^
-  --add-data "templates;templates" ^
-  --add-data "static;static" ^
-  --add-data "obfuscated/RUNTIME_NAME;RUNTIME_NAME" ^
-  --hidden-import "pystray._win32" ^
-  --hidden-import "PIL.Image" ^
-  --hidden-import "PIL.ImageDraw" ^
-  "obfuscated/launcher.py"
-```
-
-### 4. 결과물
-
-```
-dist/
-└── PC_Dashboard/
-    ├── PC_Dashboard.exe   ← 실행 파일
-    └── _internal/         ← 런타임 (함께 배포 필요)
-```
-
-> `dist/PC_Dashboard/` 폴더 전체를 zip으로 압축해서 배포하세요.  
-> `_internal/` 폴더가 없으면 실행되지 않습니다.
+> `_internal/` 폴더가 exe와 함께 있어야 정상 실행됩니다.
 
 ---
 
